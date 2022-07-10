@@ -7,18 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LivroRepositoryImplOracle implements LivroRepository {
-    @Override
-    public List<Livro> obterLivros() {
-        List<Livro> livroOracle = new ArrayList<>();
+    private static List<Livro> livroOracle = new ArrayList<>();
+    public LivroRepositoryImplOracle() {
+        if (livroOracle.size()<1)
+            populaDados();
+    }
+
+    private void populaDados(){
         livroOracle.add(new Livro(1L,"123","Usei Para Oracle"));
         livroOracle.add(new Livro(2L,"12345","Oracle Melhor Banco"));
-        System.out.println("Usei para Oracle");
+    }
+
+    @Override
+    public List<Livro> obterLivros() {
         return livroOracle;
     }
 
     @Override
     public Livro adicionarLivro(Livro novoLivro) {
         System.out.println("Usei para Oracle");
+        livroOracle.add(novoLivro);
         return novoLivro;
     }
 }

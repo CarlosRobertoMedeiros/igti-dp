@@ -7,18 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LivroRepositoryImplSQL implements LivroRepository {
+
+    private static List<Livro> livroSQL = new ArrayList<>();
+    public LivroRepositoryImplSQL() {
+        if (livroSQL.size()<1)
+            populaDados();
+    }
+
+    private void populaDados(){
+        livroSQL.add(new Livro(1L,"123","Usei Para SQL"));
+        livroSQL.add(new Livro(2L,"12345","SQL SQL"));
+    }
+
     @Override
     public List<Livro> obterLivros() {
-        List<Livro> livroSql = new ArrayList<>();
-        livroSql.add(new Livro(1L,"123","Usei Para SQL"));
-        livroSql.add(new Livro(2L,"12345","SQL Melhor Banco"));
-        System.out.println("Usei para SQL");
-        return livroSql;
+        return livroSQL;
     }
 
     @Override
     public Livro adicionarLivro(Livro novoLivro) {
         System.out.println("Usei para SQL");
+        livroSQL.add(novoLivro);
         return novoLivro;
     }
 }

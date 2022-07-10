@@ -28,13 +28,12 @@ public class BibliotecaRest {
         return ResponseEntity.status(HttpStatus.OK).body(livros);
     }
 
-    @PostMapping
-    public ResponseEntity<LivroDto> adicionarLivro(@PathVariable LivroDto livroDto){
+    @PostMapping(value = "/livro")
+    public ResponseEntity<LivroDto> adicionarLivro(@RequestBody LivroDto livroDto){
         LivroDto livroDtoInterno = bibliotecaService.adicionarLivro(livroDto);
         if (livroDtoInterno==null){
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(livroDtoInterno);
     }
-
 }
